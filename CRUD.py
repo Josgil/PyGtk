@@ -109,6 +109,33 @@ class GUI(Gtk.Window):
             entry4.set_text(str(registro["Telefono"]))
             entry5.set_text(registro["Mail"])
 
+    def onButtonPressedActualizar(self, button):
+        entry1 = self.builder.get_object("entry1")
+        entry2 = self.builder.get_object("entry2")
+        entry3 = self.builder.get_object("entry3")
+        entry4 = self.builder.get_object("entry4")
+        entry5 = self.builder.get_object("entry5")
+
+        entry1.get_text()
+        entry2.get_text()
+        entry3.get_text()
+        entry4.get_text()
+        entry5.get_text()
+
+        text1 = entry1.get_text()
+        text2 = entry2.get_text()
+        text3 = entry3.get_text()
+        text4 = entry4.get_text()
+        text5 = entry5.get_text()
+
+        Actualizar = ("Nombre = '" + text2 + "', Apellidos = '" + text3 +
+        "', Telefono = '" + text4 + "', Mail = '" + text5 + "'")
+        print Actualizar
+        query = "UPDATE Personas SET " + Actualizar + " WHERE id=" + text1 + ";"
+        print query
+        micursor.execute(query)
+        Conexion.commit()
+
     def onCloseAbout(self, *args):
         self.about.hide()
 
