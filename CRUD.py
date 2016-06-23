@@ -164,3 +164,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#Cosas por añadir al programa:
+    #Si metes datos a un Id ya esistente, detectar que existe y avisar
+    #Al pulsar Borrar, que los campos se queden en blanco.
+    #Al pulsar obtener, si hay campos que no tienen datos, poner en blanco
