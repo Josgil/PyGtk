@@ -8,6 +8,30 @@
     <property name="type_hint">dialog</property>
     <property name="program_name">Glade</property>
     <property name="logo_icon_name">image-missing</property>
+    <property name="copyright" translatable="yes">Copyright 2016 José Francisco Gil Sánchez</property>
+    <property name="comments" translatable="yes">Esta aplicación Crea, Obtiene, Actualiza y Borra datos tipo Agenda de una base de datos MySQL.
+Los datos a manejar son Número de identificación (Id), Nombre, Apellidos, Teléfono y Mail</property>
+    <property name="website">https://github.com/Josgil/PyGtk.git</property>
+    <property name="website_label" translatable="yes">Repositorio</property>
+    <property name="license" translatable="yes">This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+     
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+       
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+MA 02110-1301, USA.</property>
+    <property name="authors">José Francisco Gil Sánchez</property>
+    <property name="logo">JsgilSoft.jpg</property>
+    <property name="wrap_license">True</property>
+    <property name="license_type">custom</property>
+    <signal name="close" handler="onCloseAbout" swapped="no"/>
     <signal name="response" handler="onCloseAbout" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
@@ -23,6 +47,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
+            <property name="pack_type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
