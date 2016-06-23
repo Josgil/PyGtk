@@ -30,6 +30,7 @@ class GUI(Gtk.Window):
 
     def __init__(self):
         """Definición de inicio"""
+        #Iniciamos el GTK Builder para que funcione glade
         self.builder = Gtk.Builder()
         self.builder.add_from_file("interfaz1.glade")
         self.handlers = {"onDeleteWindow": self.onDeleteWindow,
@@ -46,33 +47,18 @@ class GUI(Gtk.Window):
         self.about = self.builder.get_object("aboutdialog1")
         self.window.show_all()
 
-        #self.label1 = self.builder.get_object("label1")
-        #self.label1.show()
-        #self.entry1 = self.builder.get_object("entry1")
-        #self.entry1.show()
-
-        #datos = {'d1': str("000"),
-                #'d2': str("nombre"),
-                #'d3': str("apellido"),
-                #'d4': str("teléfono"),
-                #'d5': str("mail")}
     def onAboutDialog(self, *args):
         self.about.show_all()
 
     def onDeleteWindow(self, *args):
         Gtk.main_quit(*args)
 
-    def pintar(self, button):
-        self.label1.show()
-        self.entry1.show()
-        print "pintar"
-
     def CreateTable(self, button):
         nueva_tabla = ("""CREATE TABLE Personas (
             Id INT,
             Nombre CHAR(20),
             Apellido CHAR(20),
-            Telefono INT,
+            Telefono INT(9),
             mail CHAR(20))""")
         micursor.execute(nueva_tabla)
 
@@ -100,7 +86,6 @@ class GUI(Gtk.Window):
         micursor.execute(query)
         Conexion.commit()
 
-        print "Hola mundo"
         print "El ID " + text1 + "se llama " + text2 + text3
         print "su teléfono es el " + text4 + " y su mail: " + text5
 
@@ -116,11 +101,7 @@ class GUI(Gtk.Window):
         Campos = "id, Nombre, Apellidos, Telefono, Mail"
         query = "SELECT " + Campos + " FROM Personas WHERE id=" + text1 + ";"
         micursor.execute(query)
-        print "Obtener"
-        print query
         registros = micursor.fetchall()
-        print type(registros)
-        print registros
 
         for registro in registros:
             entry2.set_text(registro["Nombre"])
