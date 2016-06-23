@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#Curso de "Tratamiento de datos, juegos y programación gráfica en Python
+#Organizado por la Universidad de Granada.
+#Ejercicio de Interfaces Gráficas con PyGTK
+
+#José Francisco Gil Sánchez
+#@PichonceteGM mail: jfgilsanchez@gmail.com
+#Realizado en junio de 2016.
+#Ultima actualización el 23 de junio de 2016
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -36,13 +45,14 @@ class GUI(Gtk.Window):
         self.handlers = {"onDeleteWindow": self.onDeleteWindow,
                         "onButtonPressed": self.onButtonPressed,
                         "onButtonPressedObtener": self.onButtonPressedObtener,
+                        "onButtonPressedActualizar": self.onButtonPressedActualizar,
+                        "onButtonPressedBorrar": self.onButtonPressedBorrar,
                         "onAboutDialog": self.onAboutDialog,
                         "onCloseAbout": self.onCloseAbout}
 
         #Conectamos las señales e iniciamos la aplicaciones
         self.builder.connect_signals(self.handlers)
         self.window = self.builder.get_object("window1")
-        #self.button1 = self.builder.get_objet("button1")
         self.window.connect("delete-event", Gtk.main_quit)
         self.about = self.builder.get_object("aboutdialog1")
         self.window.show_all()
@@ -133,6 +143,14 @@ class GUI(Gtk.Window):
         print Actualizar
         query = "UPDATE Personas SET " + Actualizar + " WHERE id=" + text1 + ";"
         print query
+        micursor.execute(query)
+        Conexion.commit()
+
+    def onButtonPressedBorrar(self, button):
+        entry1 = self.builder.get_object("entry1")
+        entry1.get_text()
+        text1 = entry1.get_text()
+        query = "DELETE FROM Personas WHERE id= " + text1 + ";"
         micursor.execute(query)
         Conexion.commit()
 
